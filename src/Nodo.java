@@ -1,26 +1,15 @@
 
 public class Nodo {
-    int valor;
-    Nodo izq;
-    Nodo der;
+   private Libro libro;
+   private Nodo izq;
+   private Nodo der;
 
-    public Nodo(int valor) {
-        this.valor = valor;
-        this.izq = null;
-        this.der = null;
-    }
-
-    public Nodo() {
+    public Nodo(Libro libro, Nodo izq, Nodo der) {
+        this.libro = libro;
+        this.izq = izq;
+        this.der = der;
     }
     
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
     public Nodo getIzq() {
         return izq;
     }
@@ -36,4 +25,13 @@ public class Nodo {
     public void setDer(Nodo der) {
         this.der = der;
     }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+    
 }
