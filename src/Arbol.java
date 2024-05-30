@@ -1,3 +1,8 @@
+/*Construir el árbol mediante inserciones
+Colocar el libro de hechizos de manera aleatoria
+Dar la opción que el usuario elija la rama por la que el fantasma buscará el libro y calcular la cantidad de pasos recorridos
+Buscar el libro de hechizos mediante un algoritmo y calcular los pasos recorridos
+*/
 
 public class Arbol {
     Nodo raiz;
