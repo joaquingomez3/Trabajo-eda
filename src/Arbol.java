@@ -21,30 +21,38 @@ public class Arbol {
     
     //metodo insertar nodo
     public void insertarN(Libro libro){
-        
+        Nodo nuevo=new Nodo(libro, null, null); 
         if (raiz==null){
-            Nodo nuevo=new Nodo(libro,null,null);
+            
             raiz=nuevo;
            
         } else{ 
             Nodo aux =raiz;
             Nodo padre;
-            while(aux!=null){
+            while(true){
             padre=aux;    
-            aux=aux.getDer();
-             if(aux.getDer()==null){
-                padre.setLibro(libro);  
-             }
-             else{
+            if (libro.getId()<aux.getLibro().getId()){
                 aux=aux.getIzq();
-                 if(aux.getIzq()==null){
-                padre.setLibro(libro);
-               
+             if(aux==null){
+                padre.setIzq(nuevo);
+                return;
              }
+            } else{
+                aux=aux.getIzq();
+                 if(aux==null){
+                padre.setIzq(nuevo);
+                return;
              }
-            
+            }
+            }
         }
-        } 
     }
-    
+     public void Recorrido(Nodo raiz){
+        if(raiz!=null){
+            System.out.println(raiz.getLibro().getNombre());
+            Recorrido(raiz.getIzq());
+            Recorrido(raiz.getDer());
+        }
+    }
 }
+

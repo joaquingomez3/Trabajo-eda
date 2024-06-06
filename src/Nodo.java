@@ -1,6 +1,7 @@
 
 public class Nodo {
    private Libro libro;
+   
    private Nodo izq;
    private Nodo der;
 
