@@ -20,55 +20,31 @@ public class Arbol {
     }
     
     //metodo insertar nodo
-    public void insertarN(int valor1){
-        Nodo nuevo=new Nodo(valor1);
+    public void insertarN(Libro libro){
+        
         if (raiz==null){
+            Nodo nuevo=new Nodo(libro,null,null);
             raiz=nuevo;
            
         } else{ 
             Nodo aux =raiz;
             Nodo padre;
-            while(true){
+            while(aux!=null){
             padre=aux;    
-            if (valor1<aux.valor){
-                aux=aux.izq;
-             if(aux==null){
-                padre.izq=nuevo;
-                return;
+            aux=aux.getDer();
+             if(aux.getDer()==null){
+                padre.setLibro(libro);  
              }
-            } else{
-                aux=aux.der;
-                 if(aux==null){
-                padre.der=nuevo;
-                return;
+             else{
+                aux=aux.getIzq();
+                 if(aux.getIzq()==null){
+                padre.setLibro(libro);
+               
              }
-            }
-            }
+             }
+            
         }
-         
+        } 
     }
-    //metodo busqueda de nodo
-    public Nodo busquedaN( int valor){
-       Nodo punt=raiz; 
-       
-        while(punt.valor != valor){
-            if(valor<punt.valor){
-                punt=punt.izq;
-            }else{
-                punt=punt.der;
-            }
-            if(punt==null){
-                return null;
-            }
-        }
-    return punt;
-}
-    //recorrido de nodo
-    public void Recorrido(Nodo raiz){
-        if(raiz!=null){
-            System.out.println(raiz.valor);
-            Recorrido(raiz.izq);
-            Recorrido(raiz.der);
-        }
-    }
+    
 }
