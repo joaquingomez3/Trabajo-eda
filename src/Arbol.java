@@ -83,6 +83,41 @@ public class Arbol {
                 }
             }
         }
+    }
+
+    public void insertarN(Libro libro){
+        Nodo nuevo=new Nodo(libro, null, null); 
+        if (raiz==null){
+            
+            raiz=nuevo;
+           
+        } else{ 
+            Nodo aux =raiz;
+            Nodo padre;
+            while(true){
+            padre=aux;    
+            if (libro.getId()<aux.getLibro().getId()){
+                aux=aux.getIzq();
+             if(aux==null){
+                padre.setIzq(nuevo);
+                return;
+             }
+            } else{
+                aux=aux.getIzq();
+                 if(aux==null){
+                padre.setIzq(nuevo);
+                return;
+             }
+            }
+            }
+        }
+    }
+     public void Recorrido(Nodo raiz){
+        if(raiz!=null){
+            System.out.println(raiz.getLibro().getNombre());
+            Recorrido(raiz.getIzq());
+            Recorrido(raiz.getDer());
+        }
 
     }
 
@@ -110,3 +145,4 @@ public class Arbol {
 //        }
 //    }
 }
+
