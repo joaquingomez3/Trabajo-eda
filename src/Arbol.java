@@ -22,34 +22,6 @@ public class Arbol {
         this.raiz = raiz;
     }
 
-    //metodo insertar nodo
-//    public void insertarN(Libro libro){
-//        Nodo nuevo=new Nodo(libro);
-//        if (raiz==null){
-//            raiz=nuevo;
-//           
-//        } else{ 
-//            Nodo aux =raiz;
-//            Nodo padre;
-//            while(true){
-//            padre=aux;    
-//            if (valor1<aux.valor){
-//                aux=aux.izq;
-//             if(aux==null){
-//                padre.izq=nuevo;
-//                return;
-//             }
-//            } else{
-//                aux=aux.der;
-//                 if(aux==null){
-//                padre.der=nuevo;
-//                return;
-//             }
-//            }
-//            }
-//        }
-//    }
-    //metodo busqueda de nodo
     public void busquedaDeLibro() {
         Scanner scan = new Scanner(System.in);
         int pasos = 0;
@@ -72,7 +44,7 @@ public class Arbol {
                         padre = padre.getDer();
                     } else {
                         System.out.println("¡Opción no válida!");
-                        continue; 
+                        continue;
                     }
 
                     if (padre.getLibro().getNombre().equalsIgnoreCase("Libro de hechizos")) {
@@ -85,35 +57,36 @@ public class Arbol {
         }
     }
 
-    public void insertarN(Libro libro){
-        Nodo nuevo=new Nodo(libro, null, null); 
-        if (raiz==null){
-            
-            raiz=nuevo;
-           
-        } else{ 
-            Nodo aux =raiz;
+    public void insertarN(Libro libro) {
+        Nodo nuevo = new Nodo(libro, null, null);
+        if (raiz == null) {
+
+            raiz = nuevo;
+
+        } else {
+            Nodo aux = raiz;
             Nodo padre;
-            while(true){
-            padre=aux;    
-            if (libro.getId()<aux.getLibro().getId()){
-                aux=aux.getIzq();
-             if(aux==null){
-                padre.setIzq(nuevo);
-                return;
-             }
-            } else{
-                aux=aux.getIzq();
-                 if(aux==null){
-                padre.setIzq(nuevo);
-                return;
-             }
-            }
+            while (true) {
+                padre = aux;
+                if (libro.getId() < aux.getLibro().getId()) {
+                    aux = aux.getIzq();
+                    if (aux == null) {
+                        padre.setIzq(nuevo);
+                        return;
+                    }
+                } else {
+                    aux = aux.getIzq();
+                    if (aux == null) {
+                        padre.setIzq(nuevo);
+                        return;
+                    }
+                }
             }
         }
     }
-     public void Recorrido(Nodo raiz){
-        if(raiz!=null){
+
+    public void Recorrido(Nodo raiz) {
+        if (raiz != null) {
             System.out.println(raiz.getLibro().getNombre());
             Recorrido(raiz.getIzq());
             Recorrido(raiz.getDer());
@@ -121,28 +94,24 @@ public class Arbol {
 
     }
 
-//    public Nodo busquedaN( int valor){
-//       Nodo punt=raiz; 
-//       
-//        while(punt.valor != valor){
-//            if(valor<punt.valor){
-//                punt=punt.izq;
-//            }else{
-//                punt=punt.der;
-//            }
-//            if(punt==null){
-//                return null;
-//            }
-//        }
-//    return punt;
-//}
-//    //recorrido de nodo
-//    public void Recorrido(Nodo raiz){
-//        if(raiz!=null){
-//            System.out.println(raiz.valor);
-//            Recorrido(raiz.izq);
-//            Recorrido(raiz.der);
-//        }
-//    }
-}
+    public void BuscarLibro(Libro libro) {
+        Nodo puntero = raiz;
+        int pasos = 0;
+        while (puntero.getLibro().getId() != libro.getId()) {
+            if (libro.getId() < puntero.getLibro().getId()) {
+                puntero = puntero.getIzq();
+                pasos++;
+            } else {
+                puntero = puntero.getDer();
+                pasos++;
+            }
+            if (puntero == null) {
+                System.out.println("Este arbol esta vacio");
+            } else {
+                System.out.println("Se encontro el libro" + libro.getNombre());
+                System.out.println("Dio " + pasos + " pasos para encontrar su libro");
+            }
+        }
+    }
 
+}
