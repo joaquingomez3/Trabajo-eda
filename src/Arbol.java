@@ -150,7 +150,7 @@ public class Arbol {
 
     public void recorrido(Nodo raiz) {
         if (raiz != null) {
-            System.out.println(raiz.getLibro().getNombre() + raiz.getLibro().getId());
+            System.out.println("El libro es "+ raiz.getLibro().getNombre() + " y el id es "+ raiz.getLibro().getId());
             recorrido(raiz.getIzq());
             recorrido(raiz.getDer());
         }

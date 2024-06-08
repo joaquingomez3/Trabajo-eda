@@ -14,7 +14,8 @@ public class main {
                 System.out.println("1. Guardar un libro");
                 System.out.println("2. Busca un libro ");
                 System.out.println("3. Encuentra el libro de hechizos");
-                System.out.println("4. Salir");
+                System.out.println("4. Mostrar biblioteca");
+                System.out.println("5. Salir");
                 System.out.println("------------------------------------------------");
                 System.out.print("Ingrese una opción: ");
 
@@ -50,6 +51,9 @@ public class main {
                         arbol.busquedaLibroHechizado();
                         break;
                     case 4:
+                        arbol.recorrido(arbol.raiz);
+                        break;
+                    case 5:
                         System.out.println("Adiós!");
                         break;
                     default:
@@ -61,6 +65,6 @@ public class main {
                 scan.next();
             }
             
-        } while (opcion != 4);
+        } while (opcion != 5);
     }
 }
