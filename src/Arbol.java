@@ -1,6 +1,4 @@
 
-
-
 import java.util.Scanner;
 
 /*Construir el árbol mediante inserciones
@@ -26,7 +24,6 @@ public class Arbol {
     }
 
     public void busquedaLibroHechizado() {
-        try {
             if (raiz == null) {
                 System.out.println("Este arbol esta vacio");
                 return;
@@ -36,7 +33,7 @@ public class Arbol {
             int pasos = 0;
             while (aux != null) {
                 if (aux.getLibro().getNombre().equalsIgnoreCase("hechizos")) {
-                    System.out.println("Este es : " + aux.getLibro().getNombre() );
+                    System.out.println("Este es : " + aux.getLibro().getNombre());
                     System.out.println("Pasos recorridos: " + pasos);
                     return;
                 }
@@ -78,79 +75,61 @@ public class Arbol {
             }
 
             System.out.println("No se encontro el libro de hechizos");
-        } catch (Exception e) {
-            System.out.println("Ocurrió un error durante la búsqueda: " + e.getMessage());
-        }
+
     }
 
     
+    
     public void insertarLibro() {
-         String titulo;
-    while (true) {
-        try {
-            System.out.print("Ingrese título del libro: ");
-            titulo = scan.nextLine(); 
-            scan.nextLine();
-            break;
-        } catch (Exception e) {
-            System.out.println("Entrada no válida. Por favor, ingrese el título del libro nuevamente.");
-            scan.nextLine(); 
-        }
-    }
+        String titulo;
+        int indice = -1;
+                System.out.print("Ingrese título del libro: ");
+                titulo = scan.nextLine();
 
-    int indice;
-    if (titulo.equals("hechizos")) {
-        indice = (int) (Math.random() * 1000);
-        System.out.println("Asignando ID aleatorio: " + indice);
-    } else {
-        while (true) {
-            try {
-                
+        if (titulo.equalsIgnoreCase("hechizos")) {
+            indice = (int) (Math.random() * 1000);
+            System.out.println("Asignando ID aleatorio: " + indice);
+        } else {
+              try {
                 System.out.print("Ingrese un índice numérico: ");
-                indice = scan.nextInt();
-                break;
-            } catch (Exception e) {
+                 indice = Integer.parseInt(scan.nextLine());
+            } catch (NumberFormatException  e) {
                 System.out.println("Entrada no válida. Por favor, ingrese un índice numérico.");
-                scan.nextLine();
+                scan.nextLine(); 
+                return;
             }
         }
-    }
+            Libro libro = new Libro(titulo, indice);
+            Nodo nuevo = new Nodo(libro, null, null);
 
-    try {
-        Libro libro = new Libro(titulo, indice);
-        Nodo nuevo = new Nodo(libro, null, null);
-
-        if (raiz == null) {
-            raiz = nuevo;
-        } else {
-            Nodo aux = raiz;
-            Nodo padre;
-            while (true) {
-                padre = aux;
-                if (libro.getId() < aux.getLibro().getId()) {
-                    aux = aux.getIzq();
-                    if (aux == null) {
-                        padre.setIzq(nuevo);
-                        return;
-                    }
-                } else {
-                    aux = aux.getDer();
-                    if (aux == null) {
-                        padre.setDer(nuevo);
-                        return;
+            if (raiz == null) {
+                raiz = nuevo;
+            } else {
+                Nodo aux = raiz;
+                Nodo padre;
+                while (true) {
+                    padre = aux;
+                    if (libro.getId() < aux.getLibro().getId()) {
+                        aux = aux.getIzq();
+                        if (aux == null) {
+                            padre.setIzq(nuevo);
+                            return;
+                        }
+                    } else {
+                        aux = aux.getDer();
+                        if (aux == null) {
+                            padre.setDer(nuevo);
+                            return;
+                        }
                     }
                 }
             }
-        }
-        System.out.println("Libro agregado exitosamente");
-    } catch (Exception e) {
-        System.out.println("Ocurrió un error al insertar el libro: " + e.getMessage());
-    }
+            System.out.println("Libro agregado exitosamente");
     }
 
     public void recorrido(Nodo raiz) {
         if (raiz != null) {
-            System.out.println("El libro es "+ raiz.getLibro().getNombre() + " y el id es "+ raiz.getLibro().getId());
+            System.out.println("El libro es " + raiz.getLibro().getNombre() + " y el id es " + raiz.getLibro().getId());
             recorrido(raiz.getIzq());
             recorrido(raiz.getDer());
         }
@@ -158,10 +137,10 @@ public class Arbol {
     }
 
     public void buscarLibro(Libro libro) {
-     
-            Nodo puntero = raiz;
-            int pasos = 0;
-   try {
+
+        Nodo puntero = raiz;
+        int pasos = 0;
+        try {
             while (puntero != null && puntero.getLibro().getId() != libro.getId()) {
                 if (libro.getId() < puntero.getLibro().getId()) {
                     puntero = puntero.getIzq();
@@ -174,7 +153,7 @@ public class Arbol {
             if (puntero == null) {
                 System.out.println("No se encontro el libro " + libro.getNombre());
             } else {
-                System.out.println("Se encontro el libro " + libro.getNombre()+" con el id: "+ libro.getId());
+                System.out.println("Se encontro el libro " + libro.getNombre() + " con el id: " + libro.getId());
                 System.out.println("Dio " + pasos + " pasos para encontrar su libro");
             }
 

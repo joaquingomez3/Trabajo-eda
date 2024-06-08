@@ -19,33 +19,37 @@ public class main {
                 System.out.println("------------------------------------------------");
                 System.out.print("Ingrese una opción: ");
 
-                opcion = scan.nextInt();
-                scan.nextLine();
+                 opcion = scan.nextInt();
+                scan.nextLine(); 
 
                 switch (opcion) {
                     case 1:
                         arbol.insertarLibro();
                         break;
                     case 2:
-                        System.out.println("Ingrese el nombre del libro que desea buscar: ");
-                        String nombre = scan.nextLine();
-                        int id = -1;
-                        boolean idValido = false;
+                        if (arbol.raiz == null) {
+                            System.out.println("Este árbol está vacío");
+                        } else {
+                            System.out.println("Ingrese el nombre del libro que desea buscar: ");
+                            String nombre = scan.nextLine();
+                            int id = -1;
+                            boolean idValido = false;
 
-                        while (!idValido) {
-                            try {
-                                System.out.println("Ingrese el identificador numerico del libro: ");
-                                id = scan.nextInt();
-                                idValido = true;
-                            } catch (Exception e) {
-                                System.out.println("Entrada no válida. Por favor, ingrese un número.");
-                                scan.next();
-         
-                 }
+                            while (!idValido) {
+                                try {
+                                    System.out.println("Ingrese el identificador numérico del libro: ");
+                                    id = scan.nextInt();
+                                    scan.nextLine(); 
+                                    idValido = true;
+                                } catch (Exception e) {
+                                    System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                                    scan.nextLine();
+                                }
+                            }
+
+                            Libro libro = new Libro(nombre, id);
+                            arbol.buscarLibro(libro);
                         }
-
-                        Libro libro = new Libro(nombre, id);
-                        arbol.buscarLibro(libro);
                         break;
                     case 3:
                         arbol.busquedaLibroHechizado();
@@ -59,12 +63,10 @@ public class main {
                     default:
                         System.out.println("Opción inválida");
                 }
-
             } catch (Exception e) {
                 System.out.println("Entrada no válida. Por favor, intente de nuevo.");
-                scan.next();
+                scan.nextLine();
             }
-            
         } while (opcion != 5);
     }
 }
