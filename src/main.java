@@ -39,7 +39,8 @@ public class main {
                             } catch (Exception e) {
                                 System.out.println("Entrada no válida. Por favor, ingrese un número.");
                                 scan.next();
-                            }
+         
+                 }
                         }
 
                         Libro libro = new Libro(nombre, id);

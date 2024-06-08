@@ -1,4 +1,6 @@
 
+
+
 import java.util.Scanner;
 
 /*Construir el árbol mediante inserciones
@@ -33,7 +35,7 @@ public class Arbol {
             Nodo aux = raiz;
             int pasos = 0;
             while (aux != null) {
-                if (aux.getLibro().getNombre().equalsIgnoreCase("Libro de hechizos")) {
+                if (aux.getLibro().getNombre().equalsIgnoreCase("hechizos")) {
                     System.out.println("Este es : " + aux.getLibro().getNombre() );
                     System.out.println("Pasos recorridos: " + pasos);
                     return;
@@ -88,6 +90,7 @@ public class Arbol {
         try {
             System.out.print("Ingrese título del libro: ");
             titulo = scan.nextLine(); 
+            scan.nextLine();
             break;
         } catch (Exception e) {
             System.out.println("Entrada no válida. Por favor, ingrese el título del libro nuevamente.");
@@ -96,7 +99,7 @@ public class Arbol {
     }
 
     int indice;
-    if (titulo.equalsIgnoreCase("Libro de hechizos")) {
+    if (titulo.equals("hechizos")) {
         indice = (int) (Math.random() * 1000);
         System.out.println("Asignando ID aleatorio: " + indice);
     } else {
